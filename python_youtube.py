@@ -11,5 +11,5 @@ stream = video_obj.streams.get_highest_resolution()
 #stream = video_obj.streams.get_lowest_resolution()
 stream.download(DOWNLOAD_FOLDER)
 
-print('='*80)
+print('='*77)
 print (DOWNLOAD_FOLDER)
