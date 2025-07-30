@@ -8,10 +8,11 @@
  ============================================================================
  */
 
-#include <stdio.h>
-#include <stdlib.h>
+// #include <stdio.h>
+// #include <stdlib.h>
+#include "header_file_2.h"
 
-#define PI 3.1416
+// #define PI 3.1416
 volatile float sum;
 volatile int a,b;
 
@@ -25,13 +26,12 @@ void static_variable2();
 void scanf_();
 
 int main(void) {
-	//printf("!!!Hello World!!!\n"); /* prints !!!Hello World!!! */
 	//function();
 	//variable_size();
 	//malloc_calloc();
-	//struct_union();
+	struct_union();
 	//static_variable2();
-	scanf_();
+	//scanf_();
 	return 0;
 }
 
@@ -67,9 +67,18 @@ void struct_union(){
 	struct StructName str;
 	str.a='A';
 	printf("\nStruct size is: 0x%x bytes", sizeof(str));
-	printf("Element of array %c", str.a);
+	printf("\tElement of array %c", str.a);
+
+		struct StructName2{
+		char e; 	//2b
+		double f;	//8b
+		char g;		//2b -> padding 6b
+	};
+	struct StructName2 str2;
+	printf("\nStruct2 size is: 0x%x bytes", sizeof(str2));
+
 	union UnionName{
-		char a;	//2b
+		char a;		//2b
 		int b;		//4b
 		float c;	//4b
 		double d;	//8b
@@ -153,9 +162,9 @@ void pointers_size(){
 }
 
 int function(){
- 	int x=10;
- 	float sum=0;
- 	sum = PI + x;
+ 	extern int x;
+ 	float sum=3.0;
+ 	sum = (int)PI + x;
  	printf("Enter 2 different numbers: \n");
  	scanf("%i  %i",&a, &b);
 
