@@ -13,6 +13,7 @@
 /bin/
 /Debug/
 /Release/
+/.vscode/
 
 # Ignore temporary files
 *.log
@@ -32,6 +33,8 @@
 # Ignore generated files
 *.out
 *.class
+*.ilk
+*.pdb
 
 # Ignore test files
 *.test

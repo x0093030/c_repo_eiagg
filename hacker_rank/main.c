@@ -15,7 +15,14 @@
 // #define PI 3.1416
 volatile float sum;
 volatile int a,b;
+#define IS_IT_PRIME_NUMBER 31
 
+
+
+void palindrome(char*); // Function prototype for palindrome check)
+void swap_numbers(); // Function to swap two numbers
+int primo(int num); // Function to check if a number is prime
+void fibonacci(int num, int, int, int); //Calculates the Fibonacci number for the parameter 'num'
 int function(); //Comes from source_file_2.c
 void pointers_size();
 void variable_size();
@@ -24,12 +31,21 @@ void struct_union();
 int static_variable();
 void static_variable2();
 void scanf_();
+void *my_memcpy(void *restrict dest, const void *restrict src, size_t count);
+size_t my_strnlen(const char *s, size_t max); // Custom implementation of strnlen
+void psudo_main01(); // Example of a pseudo main function
 
 int main(void) {
+	psudo_main01(); // Example of a pseudo main function
+	//palindrome("radar"); // Example call to palindrome function
+	//swap_numbers();
+	//printf("%s\n", primo(IS_IT_PRIME_NUMBER) ? " is prime" : " is NOT prime");
+	//printf("%d %d",0,1);
+	//fibonacci(6 -2, 0, 1, 0); // Example call to Fibonacci function
 	//function();
 	//variable_size();
 	//malloc_calloc();
-	struct_union();
+	//struct_union();
 	//static_variable2();
 	//scanf_();
 	return 0;
@@ -42,7 +58,6 @@ void scanf_(){
 
 	printf("\nNumber entered: %c", w);
 }
-
 
 void static_variable2(){
 	printf("\n%d ",static_variable());
@@ -88,43 +103,43 @@ void struct_union(){
 }
 
 void malloc_calloc(){
-	    // Both of these allocate the same number of bytes,
-	    // which is the amount of bytes that is required to
-	    // store 5 int values.
+		// Both of these allocate the same number of bytes,
+		// which is the amount of bytes that is required to
+		// store 5 int values.
 
-	    // The memory allocated by calloc will be
-	    // zero-initialized, but the memory allocated with
-	    // malloc will be uninitialized so reading it would be
-	    // undefined behavior.
-	    int* allocated_with_malloc = malloc(5 * sizeof(int));
-	    int* allocated_with_calloc = calloc(5, sizeof(int));
+		// The memory allocated by calloc will be
+		// zero-initialized, but the memory allocated with
+		// malloc will be uninitialized so reading it would be
+		// undefined behavior.
+		int* allocated_with_malloc = malloc(5 * sizeof(int));
+		int* allocated_with_calloc = calloc(5, sizeof(int));
 
-	    // As you can see, all of the values are initialized to
-	    // zero.
-	    printf("\nValues of allocated_with_calloc:  (Zero-initialized)");
-	    for (size_t i = 0; i < 5; ++i) {
-	        printf("\nData %d value: 0x%x", i, allocated_with_calloc[i]);
+		// As you can see, all of the values are initialized to
+		// zero.
+		printf("\nValues of allocated_with_calloc:  (Zero-initialized)");
+		for (size_t i = 0; i < 5; ++i) {
+			printf("\nData %d value: 0x%x", i, allocated_with_calloc[i]);
 
-	    }
-	    printf("\n\nValues of allocated_with_malloc: (Not initialized)");
-	    for (size_t i = 0; i < 5; ++i) {
-	        printf("\nData %d value: 0x%x", i, allocated_with_malloc[i]);
-	    }
+		}
+		printf("\n\nValues of allocated_with_malloc: (Not initialized)");
+		for (size_t i = 0; i < 5; ++i) {
+			printf("\nData %d value: 0x%x", i, allocated_with_malloc[i]);
+		}
 
 
-	    // This malloc requests 1 terabyte of dynamic memory,
-	    // which is unavailable in this case, and so the
-	    // allocation fails and returns NULL.
-	    /*int* failed_malloc = malloc(1000000000000);
-	    if (failed_malloc == NULL) {
-	        printf("The allocation failed, the value of "
-	               "failed_malloc is: %p",
-	               (void*)failed_malloc);
-	    }
-	     */
-	    // Remember to always free dynamically allocated memory.
-	    free(allocated_with_malloc);
-	    free(allocated_with_calloc);
+		// This malloc requests 1 terabyte of dynamic memory,
+		// which is unavailable in this case, and so the
+		// allocation fails and returns NULL.
+		/*int* failed_malloc = malloc(1000000000000);
+		if (failed_malloc == NULL) {
+			printf("The allocation failed, the value of "
+				   "failed_malloc is: %p",
+				   (void*)failed_malloc);
+		}
+		 */
+		// Remember to always free dynamically allocated memory.
+		free(allocated_with_malloc);
+		free(allocated_with_calloc);
 }
 
 void variable_size(){
@@ -162,12 +177,113 @@ void pointers_size(){
 }
 
 int function(){
- 	extern int x;
- 	float sum=3.0;
- 	sum = (int)PI + x;
- 	printf("Enter 2 different numbers: \n");
- 	scanf("%i  %i",&a, &b);
+	extern int x;
+	float sum=3.0;
+	sum = (int)PI + x;
+	printf("Enter 2 different numbers: \n");
+	scanf("%i  %i",&a, &b);
 
- 	printf("\nTotal is: %f", sum);
+	printf("\nTotal is: %f", sum);
 	return 0;
+}
+
+void fibonacci(int num, int first, int second, int third) {
+// Calcula el número de Fibonacci para el parámetro 'num'
+	if (num > 0){
+		third = first + second;
+		first = second;
+		second = third;
+		printf(" %d ", third);		
+		fibonacci(num - 1, first, second, third); // Recursive call with updated
+	}
+}
+
+int primo(int num) {
+	// Un número primo es un número natural mayor que 1 que solo tiene dos divisores: él mismo y el 1. 
+	// Es decir, no puede dividirse exactamente por ningún otro número distinto de 1 y de sí mismo. 
+	// Ejemplos de números primos son: 2, 3, 5, 7, 11, 13, 17, etc.
+	// Los números menores o iguales a 1 no son primos
+	// retorna 0 si no es primo
+	// retorna 1 si es primo
+	printf("\nChecking if %d is prime: ", num);
+	if (num <= 1) {
+		return 0;
+	}
+	// 2 es el único número par primo
+	if (num == 2) {
+		return 1;
+	}
+	// Si el número es par y mayor que 2, no es primo
+	if (num % 2 == 0) {
+		return 0;
+	}
+	// Verifica si el número tiene algún divisor entre 3 y la raíz cuadrada de num
+	for (int i = 3; i * i <= num; i += 2) {
+		// Si encuentra un divisor, no es primo
+		if (num % i == 0) {
+			return 0;
+		}
+	}
+	// Si no se encontró ningún divisor, es primo
+	return 1;
+}
+
+void swap_numbers() {
+	int a = 10;
+	int b = 20;
+
+	printf("Before swapping: a = %d, b = %d\n", a, b);
+
+	a = a + b; // a ahora es 30
+	b = a - b; // b ahora es 10 (30 - 20)
+	a = a - b; // a ahora es 20 (30 - 10)
+	
+	printf("After swapping: a = %d, b = %d\n", a, b);
+}
+
+void palindrome(char* str) {
+	int len = strlen(str);
+	int is_palindrome = 1;
+
+	for (int i = 0; i < len / 2; i++) {
+		if (str[i] != str[len - i - 1]) {
+			is_palindrome = 0;
+			break;
+		}
+	}
+
+	if (is_palindrome) {
+		printf("%s is a palindrome\n", str);
+	} else {
+		printf("%s is not a palindrome\n", str);
+	}
+}
+
+void psudo_main01() {
+	// Ejemplo de uso de my_memcpy
+	char origen[] = "Hola mundo";
+	char destino[20];
+	my_memcpy(destino, origen, my_strnlen(((origen)), 20)); // Copia la cadena incluyendo el terminador nulo
+	printf("Copiado: %s\n", destino);
+}
+
+void *my_memcpy(void *restrict dest, const void *restrict src, size_t count)
+{
+	// Copia byte por byte desde src a dest, hasta count bytes
+	unsigned char *d = (unsigned char *)dest;
+	const unsigned char *s = (const unsigned char *)src;
+	for (size_t i = 0; i < count; ++i) {
+		d[i] = s[i];
+	}
+	return dest;
+}
+
+size_t my_strnlen(const char *s, size_t max)
+{
+	size_t len = 0;
+	// Recorre la cadena hasta encontrar el terminador nulo o alcanzar 'max'
+	while (len < max && s[len] != '\0') {
+		len++;
+	}
+	return len;
 }
