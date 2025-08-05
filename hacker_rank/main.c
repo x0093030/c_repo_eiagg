@@ -17,8 +17,11 @@ volatile float sum;
 volatile int a,b;
 #define IS_IT_PRIME_NUMBER 31
 
-
-
+void factorial(int x);
+int factorial_01(int x); // Recursive factorial function
+void psudo_main01(); // Example of a pseudo main function
+size_t my_strnlen(const char *s, size_t max); // Custom implementation of strnlen
+void *my_memcpy(void *restrict dest, const void *restrict src, size_t count);
 void palindrome(char*); // Function prototype for palindrome check)
 void swap_numbers(); // Function to swap two numbers
 int primo(int num); // Function to check if a number is prime
@@ -31,12 +34,11 @@ void struct_union();
 int static_variable();
 void static_variable2();
 void scanf_();
-void *my_memcpy(void *restrict dest, const void *restrict src, size_t count);
-size_t my_strnlen(const char *s, size_t max); // Custom implementation of strnlen
-void psudo_main01(); // Example of a pseudo main function
 
 int main(void) {
-	psudo_main01(); // Example of a pseudo main function
+	//factorial(FACTORIAL_NUMBER); // Example call to factorial function
+	//printf("\nFactorial of %d is: %d", FACTORIAL_NUMBER, factorial_01(FACTORIAL_NUMBER)); // Example call to factorial function
+	//psudo_main01(); // Example of a pseudo main function
 	//palindrome("radar"); // Example call to palindrome function
 	//swap_numbers();
 	//printf("%s\n", primo(IS_IT_PRIME_NUMBER) ? " is prime" : " is NOT prime");
@@ -47,7 +49,7 @@ int main(void) {
 	//malloc_calloc();
 	//struct_union();
 	//static_variable2();
-	//scanf_();
+	scanf_();
 	return 0;
 }
 
@@ -57,6 +59,17 @@ void scanf_(){
 	scanf("%c", &w);
 
 	printf("\nNumber entered: %c", w);
+
+	int a=10564;
+	printf("\nNumber entered: %d", a/10000);
+	a = (a % 10000) ;
+	printf("\nNumber entered: %d", a/1000);
+	a = (a % 1000) ;
+	printf("\nNumber entered: %d", a/100);
+	a = (a % 100) ;
+	printf("\nNumber entered: %d", a/10);
+	a = (a % 10) ;
+	printf("\nNumber entered: %d", a);
 }
 
 void static_variable2(){
@@ -286,4 +299,24 @@ size_t my_strnlen(const char *s, size_t max)
 		len++;
 	}
 	return len;
+}
+
+void factorial(int x) {
+	int result = 1;
+	for (int i = 1; i <= x; i++) {
+		result *= i;
+	}
+	printf("Factorial of %d is %d\n", x, result);
+}
+
+int factorial_01(int x) {
+	if (x == 1) {
+		return 1;
+	} 
+	else if (x > 1){
+		return x * factorial_01(x - 1);
+	} 
+	else {
+		return 0; // Caso para números negativos
+	}
 }

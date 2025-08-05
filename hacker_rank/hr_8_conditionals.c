@@ -11,10 +11,12 @@
 char* readline();
 int exercise_1();
 int exercise_2();
+int exercise_3();
+void print_number(char num);
 
 int main()
 {
-    exercise_2(); // Call the function to execute the exercise
+    exercise_3(); // Call the function to execute the exercise
     return 0;
 
 }
@@ -120,5 +122,48 @@ int exercise_2() {
         printf("Converted value: %ld\n", value);
         printf("Remaining string: %s\n", endptr);
     }
-return 0;
+    return 0;
+}
+
+int exercise_3(){
+    char a;
+    char b;
+    scanf("%d \n %d", &a, &b);
+  	// Complete the code.
+    for (char i=a; i<=b; i++){
+        printf("\n");
+        print_number(i);
+    }
+
+    return 0;
+}
+
+void print_number(char num){
+        // printf("%d", *num);
+        if (num == 1){
+            printf("one");
+        } else if (num == 2) {
+            printf("two");
+        } else if (num == 3) {
+            printf("three");
+        } else if (num == 4) {
+            printf("four");
+        } else if (num == 5) {
+            printf("five");
+        } else if (num == 6) {
+            printf("six");
+        } else if (num == 7) {
+            printf("seven");
+        } else if (num == 8) {
+            printf("eight");
+        } else if (num == 9) {
+            printf("nine");
+        } else if ((num > 9) && (num % 2 == 0)) {
+            printf("even");
+        } else if ((num > 9) && (num % 2 != 0)) {
+            printf("odd");
+        } else
+        {
+            /* code */
+        }
 }
