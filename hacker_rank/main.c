@@ -8,11 +8,10 @@
  ============================================================================
  */
 
-// #include <stdio.h>
-// #include <stdlib.h>
-#include "header_file_2.h"
 
-// #define PI 3.1416
+ #include "header_file_2.h"
+
+
 volatile float sum;
 volatile int a,b;
 #define IS_IT_PRIME_NUMBER 31
