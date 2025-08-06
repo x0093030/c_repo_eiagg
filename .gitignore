@@ -1,0 +1,52 @@
+# Ignore Windows executables
+*.exe
+
+# Ignore object files
+*.obj
+
+# Ignore compiled libraries
+*.dll
+*.lib
+
+# Ignore build directories
+/build/
+/bin/
+/Debug/
+/Release/
+/.vscode/
+
+# Ignore temporary files
+*.log
+*.tmp
+*.bak
+~*
+
+# Ignore editor/project files
+*.suo
+*.user
+*.ncb
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+
+# Ignore generated files
+*.out
+*.class
+*.ilk
+*.pdb
+
+# Ignore test files
+*.test
+*.o
+
+# Ignore other unnecessary files
+*.pyc
+*.pyo
+*.DS_Store
+Thumbs.db
+
+# Ignore all files in project build folders
+project01/
+project02/
+project03/
