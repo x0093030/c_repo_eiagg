@@ -33,6 +33,7 @@ void malloc_calloc();
 void struct_union();
 int static_variable();
 void static_variable2();
+int reverse_number(int num);
 void scanf_();
 
 int main(void) {
@@ -57,10 +58,10 @@ void scanf_(){
 	char w;
 	printf("Write a number:");
 	scanf("%c", &w);
-
 	printf("\nNumber entered: %c", w);
 
 	int a=10564;
+	int b=a;
 	printf("\nNumber entered: %d", a/10000);
 	a = (a % 10000) ;
 	printf("\nNumber entered: %d", a/1000);
@@ -70,6 +71,8 @@ void scanf_(){
 	printf("\nNumber entered: %d", a/10);
 	a = (a % 10) ;
 	printf("\nNumber entered: %d", a);
+
+	reverse_number(b);
 }
 
 void static_variable2(){
@@ -319,4 +322,15 @@ int factorial_01(int x) {
 	else {
 		return 0; // Caso para números negativos
 	}
+}
+
+int reverse_number(int num){
+	int reversed = 0;
+	while (num != 0) {
+		int digit = num % 10; // Obtiene el último dígito
+		reversed = reversed * 10 + digit; // Construye el número invertido
+		num /= 10; // Elimina el último dígito del número original
+	}
+	printf("\nReversed Number: %d", reversed);
+	return reversed;
 }
